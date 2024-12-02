@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore')
 # Set up the app title and image
 st.markdown('## Airbnb Price Prediction Form', ) 
 st.write("Please fill in the form below to get the predicted price of your chosen features.") 
-st.image('image-airbnb.webp', use_column_width = True)
+st.image('airbnb.webp', use_column_width = True)
 
 # # Reading the pickle file that we created before 
 # reg_pickle = open('reg_traffic.pickle', 'rb') 
@@ -20,7 +20,6 @@ st.image('image-airbnb.webp', use_column_width = True)
 
 
 st.info('Please fill in the form below to get the predicted price of your chosen features.', icon= "ℹ️")
-
 
 
 
@@ -74,17 +73,16 @@ if st.session_state.clicked:
     encode_df = default_df.copy()
     encode_df = encode_df.drop(columns=['neighbourhood_cleansed','latitude','longitude','price'])
 
-    # st.write(encode_df)
+
 
     # Combine the list of user data as a row to default_df
     encode_df.loc[len(encode_df)] = [host_is_superhost, host_total_listings_count, host_identity_verified, property_type, accomodates,
                                      beds, minimum_nights,maximum_nights,number_of_reviews_ltm, reviews_scores_rating, instant_bookable,
                                      city,region,bathrooms]
 
-#FIX THIS CODE AND IT SHOULD WORK
-    encode_df = encode_df['host_is_superhost'].map({'Yes': 1, 'No': 0})
-    encode_df = encode_df['host_identity_verified'].map({'Yes': 1, 'No': 0})
-    encode_df = encode_df['instant_bookable'].map({'Yes': 1, 'No': 0})
+    encode_df['host_is_superhost'] = encode_df['host_is_superhost'].replace(['Yes','No'],[1.0,0.0])
+    encode_df['host_identity_verified'] = encode_df['host_identity_verified'].replace(['Yes','No'],[1.0,0.0])
+    encode_df['instant_bookable'] = encode_df['instant_bookable'].replace(['Yes','No'],[1.0,0.0])
 
     st.write(encode_df.tail(1))
     # # Create dummies for encode_df
