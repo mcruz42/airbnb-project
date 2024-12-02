@@ -17,12 +17,12 @@ m = folium.Map([34.000333, -118.213139])
 
 # Add GeoJSON to the map with hover functionality
 folium.GeoJson(
-    data=open(geojson_file, 'r').read(),  # Load GeoJSON data
+    data=open(geojson_file, 'r').read(), 
     name="Regions",
     tooltip=folium.GeoJsonTooltip(
-        fields=["NAME","price", "number"],  # Replace with the property names in your GeoJSON file
+        fields=["NAME","price", "number"],  
         aliases=["Region Name:", "Average Price/Night:", "Number of AirBnBs"],
-        localize=True,  # Localize tooltip data
+        localize=True,  
     )
 ).add_to(m)
 

@@ -14,8 +14,8 @@ with open(geojson_file, 'r') as f:
 csv_data = pd.read_csv(csv_file)
 
 # Ensure column names match between CSV and GeoJSON
-geojson_key = "NAME"  # Key in GeoJSON (e.g., region name)
-csv_key = "region"  # Key in CSV (e.g., region name)
+geojson_key = "NAME"  # Key in GeoJSON
+csv_key = "region"  # Key in CSV 
 
 valid_regions = set(csv_data[csv_key])
 
